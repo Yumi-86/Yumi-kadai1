@@ -13,7 +13,7 @@ docker-compose up -d --build
 
 \*MySQL は、OS によって起動しない場合があるのでそれぞれの PC に合わせて docker-compsoe.yml ファイルを編集してください。
 
-Laravel 環境構築
+Laravel 環境構築　　
 ・composer のインストール
 
 ```
@@ -40,12 +40,12 @@ php artisan db:seed
 
 ##　使用技術
 
-フレームワーク：Laravel 8.75
-言語：PHP 7.4.9
-データベース：MySQL 8.0
-Web サーバー：Nginx 1.21.1
-管理ツール：phpMyAdmin
-実行環境：Docker（docker-compose v3.8）
+フレームワーク：Laravel 8.75　　
+言語：PHP 7.4.9　　
+データベース：MySQL 8.0　　
+Web サーバー：Nginx 1.21.1　　
+管理ツール：phpMyAdmin　　
+実行環境：Docker（docker-compose v3.8）　　
 
 ## ER 図
 
@@ -53,9 +53,6 @@ Web サーバー：Nginx 1.21.1
 
 ## URL
 
-・環境構築 : http://localhost/
+・環境構築 : http://localhost/　　
 ・phpMyAdmin : http://localhost:8080/
 
-```
-
-```
