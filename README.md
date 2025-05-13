@@ -40,7 +40,7 @@ php artisan db:seed
 
 ##　使用技術
 
-フレームワーク：Laravel 8.7<br>　
+フレームワーク：Laravel 8.7<br>
 言語：PHP 7.4.9<br>
 データベース：MySQL 8.0<br>
 Web サーバー：Nginx 1.21.1<br>
