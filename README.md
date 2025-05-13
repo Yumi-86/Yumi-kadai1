@@ -23,16 +23,16 @@ composer install
 
 ・.env.example をコピーし.env ファイルを作成、環境変数の変更。
 
-```
 ・アプリケーションキーの設定
-```
 
+```
 php artisan key:generate
 
 ```
-・マイグレーション、シーディングの実行
-```
 
+・マイグレーション、シーディングの実行
+
+```
 php artisan migrate
 php artisan db:seed
 
@@ -43,7 +43,7 @@ php artisan db:seed
 フレームワーク：Laravel 8.75
 言語：PHP 7.4.9
 データベース：MySQL 8.0
-Webサーバー：Nginx 1.21.1
+Web サーバー：Nginx 1.21.1
 管理ツール：phpMyAdmin
 実行環境：Docker（docker-compose v3.8）
 
@@ -52,6 +52,10 @@ Webサーバー：Nginx 1.21.1
 ![ER図](ER.drawio.png)
 
 ## URL
+
 ・環境構築 : http://localhost/
 ・phpMyAdmin : http://localhost:8080/
+
+```
+
 ```
