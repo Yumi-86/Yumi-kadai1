@@ -5,6 +5,7 @@
 .contact__content {
     width: 80%;
     margin: 0 auto;
+    font-family: 'Inika', serif;
 }
 .contact__heading {
     width: auto;
@@ -105,6 +106,25 @@
     font-size: 1rem; 
     color: #8B7969;
 }
+.contact-form__category {
+    width: 50%;
+}
+/* .contact-form__category  {
+    position: relative;
+    appearance: none;
+}
+.contact-form__category::after {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    content: "";
+    margin-left: -10px;
+    transform: translateY(-50%);
+    border: 10px solid transparent;
+    border-top: 10px solid #BEB1A6;
+    pointer-events: none;
+} */
+
 .contact-form__category-select option[disabled] {
     color: #BEB1A6; 
 }

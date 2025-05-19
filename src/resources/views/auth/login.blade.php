@@ -7,7 +7,7 @@
 @section('nav')
 <ul>
     <li>
-        <a href="/login" class="header__nav-register">register</a>
+        <a href="/register" class="header__nav-register">register</a>
     </li>
 </ul>
 @endsection

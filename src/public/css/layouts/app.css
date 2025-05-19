@@ -10,6 +10,7 @@
     align-items: center;
     position: relative;
     height: 100px;
+    font-family: 'Inika', serif;
 }
 .header__spacer {
     width: 100px;
@@ -22,9 +23,8 @@
     transform: translateX( -50%);
     text-align: center;
 }
-.header__logo-link {
+.header__logo span {
     font-size: 40px;
-    text-decoration: none;
     color: #8B7969;
 }
 .header__nav {

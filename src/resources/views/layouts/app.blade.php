@@ -8,6 +8,7 @@
     <title>Fashionably Late</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/layouts/app.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inika&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
     @yield('css')
 </head>
@@ -17,7 +18,7 @@
         <div class="header__inner">
             <div class="header__spacer"></div>
             <div class="header__logo">
-                <a href="/admin" class="header__logo-link">FashionablyLate</a>
+                <span>FashionablyLate</span>
             </div>
             <nav class="header__nav">
                 @yield('nav')
@@ -27,7 +28,7 @@
 
     @yield('content')
     @yield('script')
-    
+
 </body>
 
 </body>

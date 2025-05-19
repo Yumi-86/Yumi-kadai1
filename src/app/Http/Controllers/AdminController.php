@@ -9,29 +9,33 @@ use App\Models\Category;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $contacts = Contact::with('category')->paginate(7);
 
         $categories = Category::all();
         return view('admin.index', compact('contacts', 'categories'));
     }
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         $contacts = Contact::with('category')->KeywordSearch($request->keyword)->GenderSearch($request->gender)->EmailSearch($request->email)->CategorySearch($request->category_id)->DateSearch($request->date)->paginate(7);
         $categories = Category::all();
 
         return view('admin.index', compact('contacts', 'categories'));
     }
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         Contact::find($request->id)->delete();
 
         return redirect('/admin');
     }
-    public function export(Request $request) {
+    public function export(Request $request)
+    {
 
         $contacts = Contact::KeywordSearch($request->keyword)->GenderSearch($request->gender)->CategorySearch($request->category_id)->DateSearch($request->date)->get();
 
         // CSVヘッダ
-        $csvHeader = ['ID', '名前', 'メールアドレス','電話番号','住所','建物名', 'お問い合わせの種類', 'お問い合わせの内容' ,'作成日'];
+        $csvHeader = ['ID', '名前', 'メールアドレス', '電話番号', '住所', '建物名', 'お問い合わせの種類', 'お問い合わせの内容', '作成日'];
 
         // CSVデータ作成
         $csvData = [];
@@ -69,5 +73,4 @@ class AdminController extends Controller
             "Content-Disposition" => "attachment; filename=$filename",
         ]);
     }
-    
 }

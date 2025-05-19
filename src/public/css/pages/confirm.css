@@ -6,6 +6,7 @@
 .confirm__content {
     width: 70%;
     margin: 0 auto;
+    font-family: 'Inika', serif;
 }
 
 .confirm__heading {
@@ -60,4 +61,7 @@
 }
 .edit__button--submit {
     color: #82756A;
+    width: 120px;
+    border: none;
+    cursor: pointer;
 }

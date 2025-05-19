@@ -21,10 +21,10 @@ docker-compose exec php bash
 composer install
 ```
 
-#### 日本語ファイルの導入
+##### 日本語ファイルの導入
 このプロジェクトではLaravelのバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。
 
-#### セットアップ手順:
+##### セットアップ手順:
 
 ```bash
 composer require laravel-lang/lang:~7.0 --dev

@@ -4,6 +4,7 @@
     border: 1px solid #d9c6b5;
     color: #d9c6b5;
     font-size: 20px;
+    font-family: 'Inika', serif;
     background-color: #f2f2f2;
     display: block;
     width: 100px;
@@ -21,6 +22,7 @@
 .login {
     width: 50%;
     margin: 0 auto;
+    font-family: 'Inika', serif;
 }
 .login__heading {
     width: auto;
