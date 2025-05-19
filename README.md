@@ -53,7 +53,7 @@ php artisan db:seed
 
 ```
 
-##　使用技術
+## 使用技術
 
 フレームワーク：Laravel 8.7<br>
 言語：PHP 7.4.9<br>
