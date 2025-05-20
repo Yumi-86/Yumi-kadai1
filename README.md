@@ -78,7 +78,6 @@ Web サーバー：Nginx 1.21.1<br>
 
 ## URL
 
-・環境構築 : http://localhost/<br>
 ・phpMyAdmin : http://localhost:8080/<br>
 ・問合せ画面 : http://localhost/<br>
 ・管理画面: http://localhost/admin<br>
