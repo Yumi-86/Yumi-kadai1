@@ -52,6 +52,11 @@ php artisan migrate
 php artisan db:seed
 
 ```
+"The stream or file could not be opened"エラーが発生した場合
+srcディレクトリにあるstorageディレクトリに権限を設定
+```
+chmod -R 777 storage
+```
 
 ## 使用技術
 
@@ -70,4 +75,6 @@ Web サーバー：Nginx 1.21.1<br>
 
 ・環境構築 : http://localhost/<br>
 ・phpMyAdmin : http://localhost:8080/
+・問合せ画面 : http://localhost/
+・管理画面: http://localhost/admin
 
