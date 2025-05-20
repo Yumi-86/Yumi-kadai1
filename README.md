@@ -14,6 +14,7 @@ docker-compose up -d --build
 \*MySQL は、OS によって起動しない場合があるのでそれぞれの PC に合わせて docker-compsoe.yml ファイルを編集してください。
 
 #### Laravel 環境構築
+
 ・composer のインストール
 
 ```bash
@@ -22,7 +23,8 @@ composer install
 ```
 
 ##### 日本語ファイルの導入
-このプロジェクトではLaravelのバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。
+
+このプロジェクトでは Laravel のバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。
 
 ##### セットアップ手順:
 
@@ -30,7 +32,8 @@ composer install
 composer require laravel-lang/lang:~7.0 --dev
 cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/
 ```
-Laravelの設定ファイル config/app.php の以下の項目が ja になっていることを確認してください。
+
+Laravel の設定ファイル config/app.php の以下の項目が ja になっていることを確認してください。
 
 ```php
 'local' => 'ja',
@@ -52,8 +55,10 @@ php artisan migrate
 php artisan db:seed
 
 ```
+
 "The stream or file could not be opened"エラーが発生した場合
-srcディレクトリにあるstorageディレクトリに権限を設定
+src ディレクトリにある storage ディレクトリに権限を設定
+
 ```
 chmod -R 777 storage
 ```
@@ -74,7 +79,6 @@ Web サーバー：Nginx 1.21.1<br>
 ## URL
 
 ・環境構築 : http://localhost/<br>
-・phpMyAdmin : http://localhost:8080/
-・問合せ画面 : http://localhost/
-・管理画面: http://localhost/admin
-
+・phpMyAdmin : http://localhost:8080/<br>
+・問合せ画面 : http://localhost/<br>
+・管理画面: http://localhost/admin<br>
