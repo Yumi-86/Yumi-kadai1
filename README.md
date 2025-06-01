@@ -13,7 +13,7 @@ docker-compose up -d --build
 
 \*MySQL は、OS によって起動しない場合があるのでそれぞれの PC に合わせて docker-compsoe.yml ファイルを編集してください。
 
-#### Laravel 環境構築
+#### 1. Laravel 環境構築
 
 ・composer のインストール
 
@@ -22,11 +22,11 @@ docker-compose exec php bash
 composer install
 ```
 
-##### 日本語ファイルの導入
+##### 2. 日本語ファイルの導入
 
-このプロジェクトでは Laravel のバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。
+このプロジェクトでは Laravel のバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。<br>
 
-##### セットアップ手順:
+セットアップ手順:
 
 ```bash
 composer require laravel-lang/lang:~7.0 --dev
@@ -39,21 +39,25 @@ Laravel の設定ファイル config/app.php の以下の項目が ja になっ�
 'local' => 'ja',
 ```
 
-##### .env.example をコピーし.env ファイルを作成、環境変数の変更。
+##### 3. .env.example をコピーし.env ファイルを作成、環境変数の変更。
 
-##### アプリケーションキーの設定
+##### 4. アプリケーションキーの設定
 
 ```bash
 php artisan key:generate
 
 ```
 
-##### マイグレーション、シーディングの実行
+##### 5. マイグレーション、シーディングの実行
 
 ```bash
 php artisan migrate
 php artisan db:seed
 
+```
+##### 6. シンボリックリンクの実行
+```bash
+php artisan storage:link
 ```
 
 "The stream or file could not be opened"エラーが発生した場合
