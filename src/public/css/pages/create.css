@@ -109,21 +109,6 @@
 .contact-form__category {
     width: 50%;
 }
-/* .contact-form__category  {
-    position: relative;
-    appearance: none;
-}
-.contact-form__category::after {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    content: "";
-    margin-left: -10px;
-    transform: translateY(-50%);
-    border: 10px solid transparent;
-    border-top: 10px solid #BEB1A6;
-    pointer-events: none;
-} */
 
 .contact-form__category-select option[disabled] {
     color: #BEB1A6; 
@@ -139,6 +124,27 @@
 .contact-form__detail textarea {
     height: 100%;
     resize: none;
+}
+.contact-form__label-item--avalability {
+    color: #FF4500;
+    font-size: 16px;
+}
+.contact-form__channel-check {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    font-size: 1rem;
+    color: #8B7969;
+}
+.image-preview {
+    width: 70%;
+    margin: 0 auto;
+    color: #8B7969;
+    text-align: center;
+}
+.contact-form__file-input {
+    display: block;
+    margin-top: 0.5rem;
 }
 .contact-form__button {
     width: 160px;

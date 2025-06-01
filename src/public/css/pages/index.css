@@ -104,8 +104,14 @@ form.search-form {
     border: none;
     border: #D9C6B5;
     background-color: #D9C6B5;
-    color: #fff;
     cursor: pointer;
+}
+.search-form__button .search-form__button--reset-btn {
+    color: #fff;
+}
+.search-form__button--reset-btn:hover {
+    text-decoration: none;
+    color: #fff;
 }
 .function-items {
     width: 100%;
@@ -210,6 +216,9 @@ form.search-form {
 .modal__content {
     display: flex;
     justify-content: space-between;
+}
+.modal__header {
+    border: none;
 }
 .modal__ttl {
     width: 40%;

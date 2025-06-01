@@ -23,31 +23,33 @@
                 @csrf
                 <div class="search-form__content">
                     <div class="search-form__field">
-                        <input type="text" name="keyword" class="search-form__input search-form__input--text" placeholder="名前やメールアドレスを入力してください">
+                        <input type="text" name="keyword" value="{{ request('keyword') }}" class="search-form__input search-form__input--text" placeholder="名前やメールアドレスを入力してください">
                     </div>
                     <div class="search-form__field">
                         <select name="gender" class="search-form__select">
-                            <option disabled selected hidden>性別</option>
-                            <option value="1">男性</option>
-                            <option value="2">女性</option>
-                            <option value="3">その他</option>
+                            <option disabled hidden {{ request('gender')? '': 'selected' }}>性別</option>
+                            <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
+                            <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
+                            <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
                         </select>
                     </div>
                     <div class="search-form__field">
                         <select name="category_id" class="search-form__select">
-                            <option hidden disabled selected>お問い合わせの種類</option>
+                            <option hidden disabled {{ request('category_id') ? '': 'selected' }}>お問い合わせの種類</option>
                             @foreach( $categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->content }}</option>
+                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->content }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="search-form__field">
-                        <input type="date" name="date" class="search-form__input search-form__input--date">
+                        <input type="date" name="date" value="{{ request('date') }}" class="search-form__input search-form__input--date">
                     </div>
                 </div>
                 <div class="search-form__buttons">
                     <button class="search-form__button search-form__button--submit" type="submit">検索</button>
-                    <button class="search-form__button search-form__button--reset" type="reset">リセット</button>
+                    <button class="search-form__button search-form__button--reset">
+                        <a href="/admin" class="search-form__button--reset-btn">リセット</a>
+                    </button>
                 </div>
             </form>
             <div class="function-items">
@@ -164,5 +166,5 @@
 @section('script')
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>                                   
 @endsection

@@ -32,10 +32,10 @@ class AdminController extends Controller
     public function export(Request $request)
     {
 
-        $contacts = Contact::KeywordSearch($request->keyword)->GenderSearch($request->gender)->CategorySearch($request->category_id)->DateSearch($request->date)->get();
+        $contacts = Contact::with('category')->KeywordSearch($request->keyword)->GenderSearch($request->gender)->CategorySearch($request->category_id)->DateSearch($request->date)->get();
 
         // CSVヘッダ
-        $csvHeader = ['ID', '名前', 'メールアドレス', '電話番号', '住所', '建物名', 'お問い合わせの種類', 'お問い合わせの内容', '作成日'];
+        $csvHeader = ['ID', '名前', '性別', 'メールアドレス', '電話番号', '住所', '建物名', 'お問い合わせの種類', 'お問い合わせの内容', '作成日'];
 
         // CSVデータ作成
         $csvData = [];

@@ -9,13 +9,15 @@ class Contact extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'category_id', 'first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'detail'
+        'category_id', 'first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'detail', 'image_path',
     ];
 
     public function category() {
         return $this->belongsTo(Category::class);
     }
-    // app/Models/Contact.php
+    public function channels() {
+        return $this->belongsToMany(Channel::class);
+    }
 
     public function getGenderLabelAttribute()
     {

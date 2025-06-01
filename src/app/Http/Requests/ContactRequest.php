@@ -31,6 +31,9 @@ class ContactRequest extends FormRequest
             'address'=> ['required'],
             'category_id'=> ['required'],
             'detail'=> ['required', 'max:120'],
+            'channel_id'=>['required', 'array'],
+            'channel_id.*.' => ['exists:channels, id'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ];
     }
     public function withValidator($validator)
@@ -61,6 +64,11 @@ class ContactRequest extends FormRequest
             'category_id.required'=> 'お問い合わせの種類を選択してください',
             'detail.required'=> 'お問い合わせ内容を入力してください',
             'detail.max'=> 'お問い合わせ内容は120文字以内で入力してください',
+            'channel_id.required' => '1つ以上選択してください',
+            'channel_id.array' => 'チャンネルの選択形式が不正です',
+            'channel_id.*.exists' => '選択されたチャンネルの中に存在しないものがあります',
+            'image.mimes' => '画像形式に誤りがあります',
+            'image.max' => '2MB以下のの画像を添付してください',
         ];
     }
 }

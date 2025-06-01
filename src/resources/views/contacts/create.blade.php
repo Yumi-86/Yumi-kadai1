@@ -10,7 +10,7 @@
             <div class="contact__heading">
                 <h2 class="contact__heading-text">Contact</h2>
             </div>
-            <form action="/confirm" method="post" class="contact-form">
+            <form action="/confirm" method="post" class="contact-form" novalidate enctype="multipart/form-data">
                 @csrf
                 <div class="contact-form__group">
                     <div class="contact-form__label">
@@ -36,7 +36,7 @@
                     <div class="contact-form__content">
                         <div class="contact-form__gender">
                             <label class="contact-form__gender-radio">
-                                <input type="radio" name="gender" value="1" {{ old('gender') == '1' ? 'checked' : '' }}> 男性
+                                <input type="radio" name="gender" value="1" {{ old('gender', '1' ) == '1' ? 'checked' : '' }}> 男性
                             </label>
                             <label class="contact-form__gender-radio">
                                 <input type="radio" name="gender" value="2" {{ old('gender') == '2' ? 'checked' : '' }}> 女性
@@ -130,6 +130,43 @@
                             <textarea name="detail" rows="7" placeholder="お問い合わせ内容をご記載ください" class="contact-form__detail-textarea">{{ old('detail') }}</textarea>
                         </div>
                         @error('detail')
+                        <div class="contact-form__error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="contact-form__group">
+                    <div class="contact-form__label">
+                        <span class="contact-form__label-item">どこで知りましたか？<span class="contact-form__label-item--red">※</span><span class="contact-form__label-item--avalability">複数選択可</span>
+                    </div>
+                    <div class=" contact-form__content">
+                        <div class="contact-form__channel">
+                            @foreach( $channels as $channel)
+                            <label class="contact-form__channel-check">
+                                <input type="checkbox" name="channel_id[]" value="{{ $channel->id }}" {{ in_array($channel->id, old('channel_id', [])) ? 'checked' : '' }}>
+                                {{ $channel->content}}
+                            </label>
+                            @endforeach
+                        </div>
+                        @error('channel_id')
+                        <div class="contact-form__error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                @if (!empty(old('image_path')))
+                <div class="image-preview">
+                    <p>前回アップロードされた画像:</p>
+                    <img src="{{ asset('storage/' . old('image_path')) }}" alt="プレビュー画像" style="max-width: 200px;">
+                    <input type="hidden" name="image_path" value="{{ old('image_path') }}">
+                    <p>※画像を変更するには再度ファイルを選んでください</p>
+                </div>
+                @endif
+                <div class="contact-form__group">
+                    <div class="contact-form__label">
+                        <span class="contact-form__label-item">商品画像の添付</span>
+                    </div>
+                    <div class="contact-form__content">
+                        <input type="file" name="image" class="contact-form__file-input" accept="image/*">
+                        @error('image')
                         <div class="contact-form__error">{{ $message }}</div>
                         @enderror
                     </div>
