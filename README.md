@@ -4,7 +4,7 @@
 
 ## 環境構築
 
-・Docker ビルド
+#### 1. Docker ビルド
 
 ```bash
 git clone リンク
@@ -13,7 +13,7 @@ docker-compose up -d --build
 
 \*MySQL は、OS によって起動しない場合があるのでそれぞれの PC に合わせて docker-compsoe.yml ファイルを編集してください。
 
-#### 1. Laravel 環境構築
+#### 2. Laravel 環境構築
 
 ・composer のインストール
 
@@ -22,7 +22,7 @@ docker-compose exec php bash
 composer install
 ```
 
-##### 2. 日本語ファイルの導入
+#### 3. 日本語ファイルの導入
 
 このプロジェクトでは Laravel のバリデーションメッセージ等を日本語化するために [laravel-lang/lang](https://github.com/Laravel-Lang/lang) を使用しています。<br>
 
@@ -39,23 +39,23 @@ Laravel の設定ファイル config/app.php の以下の項目が ja になっ�
 'local' => 'ja',
 ```
 
-##### 3. .env.example をコピーし.env ファイルを作成、環境変数の変更。
+#### 4. .env.example をコピーし.env ファイルを作成、環境変数の変更。
 
-##### 4. アプリケーションキーの設定
+#### 5. アプリケーションキーの設定
 
 ```bash
 php artisan key:generate
 
 ```
 
-##### 5. マイグレーション、シーディングの実行
+#### 6. マイグレーション、シーディングの実行
 
 ```bash
 php artisan migrate
 php artisan db:seed
 
 ```
-##### 6. シンボリックリンクの実行
+#### 7. シンボリックリンクの実行
 ```bash
 php artisan storage:link
 ```
