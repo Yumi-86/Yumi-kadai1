@@ -21,10 +21,10 @@
                             <input type="text" name="last_name" value="{{ old('last_name') }}" class="contact-form__name-input" placeholder="例: 山田">
                             <input type="text" name="first_name" value="{{ old('first_name') }}" class="contact-form__name-input" placeholder="例: 太郎">
                         </div>
-                        @error('first_name')
+                        @error('last_name')
                         <div class="contact-form__error">{{ $message}}</div>
                         @enderror
-                        @error('last_name')
+                        @error('first_name')
                         <div class="contact-form__error">{{ $message}}</div>
                         @enderror
                     </div>

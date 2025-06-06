@@ -20,13 +20,14 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [ContactController::class, 'create']);
 Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/', [ContactController::class, 'edit']);
 Route::post('/thanks', [ContactController::class, 'store']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/profile', [ProfileController::class, 'create'])->name('profile.create');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 });
+
 Route::post('/admin', [AdminController::class, 'search']);
 Route::delete('/admin', [AdminController::class, 'destroy']);
 Route::get('/admin/export', [AdminController::class, 'export']);

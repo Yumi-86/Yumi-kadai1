@@ -46,8 +46,8 @@ class ContactRequest extends FormRequest
 
             if (empty($tel1) || empty($tel2) || empty($tel3)) {
                 $validator->errors()->add('tel', '電話番号を完全に入力してください');
-            } elseif (!preg_match('/^\d{10,11}$/', $tel)) {
-                $validator->errors()->add('tel', '電話番号は10〜11桁の半角数字で入力してください');
+            } elseif (!preg_match('/^0\d{9,10}$/', $tel)) {
+                $validator->errors()->add('tel', '電話番号は0から始まる10〜11桁の半角数字で入力してください');
             }
         });
     }

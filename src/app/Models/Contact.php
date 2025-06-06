@@ -36,6 +36,16 @@ class Contact extends Model
     {
         return $this->last_name . '　' . $this->first_name;
     }
+    public function getFullTellAttribute()
+    {
+        return $this->tel1 . $this->tel2 . $this->tel3;
+    }
+    public function getChannelLabels() {
+        if(empty($this->channel_id)) {
+            return ['未選択'];
+        }
+        return Channel::whereIn('id', $this->channel_id)->pluck('content')->toArray() ?: ['未選択'];
+    }
     public function scopeKeywordSearch($query, $keyword)
     {
         if(!empty($keyword)){
