@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomRegisterController extends Controller
 {
-    public function register(RegisterRequest $request)
-    {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    // public function register(RegisterRequest $request)
+    // {
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //     ]);
 
-        Auth::login($user);
+    //     Auth::login($user);
 
-        return redirect('/profile');
-    }
+    //     return redirect('/profile');
+    // }
 }

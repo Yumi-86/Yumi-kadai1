@@ -36,4 +36,4 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
-Route::post('/register', [CustomRegisterController::class, 'register']);
+// Route::post('/register', [CustomRegisterController::class, 'register']);

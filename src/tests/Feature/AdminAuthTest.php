@@ -5,6 +5,10 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Profile;
+use GuzzleHttp\Psr7\UploadedFile;
+use Illuminate\Support\Facades\Hash;
 
 class AdminAuthTest extends TestCase
 {
@@ -13,10 +17,69 @@ class AdminAuthTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function admin_login()
     {
-        $response = $this->get('/');
+        $user = User::factory()->create([
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password123'),
+        ]);
 
+        $response = $this->post('/login', [
+            'email' => 'admin@example.com',
+            'password' => 'password123',
+        ]);
+
+        $response->assertRedirect('/admin');
+        $response->assertAuthenticatedAs($user);
+    }
+
+    public function access_to_admin_after_login()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->get('/admin');
         $response->assertStatus(200);
+    }
+
+    public function admin_logout()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->post('/logout');
+
+        $response->assertRedirect('/login');
+        $response->assertGuest();
+    }
+
+    public function register_profile()
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->post('/profile', [
+            'gender' => '1',
+            'birthday' => '1999-01-01',
+            'tel' => '08012345678',
+            'address' => '神奈川県',
+            'image' => UploadedFile::fake()->image('avater.jpg'),
+        ]);
+
+        $response->assertRedirect('/admin');
+
+        $this->assertDatabaseHas('profiles', [
+            'user_id' => $user->id,
+            'gender' => '1',
+            'tel' => '08012345678',
+            'address' => '神奈川県',
+        ]);
+
+        Storage::disk('public')->assertExists($user->profile->image_path);
     }
 }

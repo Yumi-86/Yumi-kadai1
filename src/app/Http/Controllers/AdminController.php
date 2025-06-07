@@ -56,10 +56,8 @@ class AdminController extends Controller
             ];
         }
 
-        // ファイル名
         $filename = 'contacts_' . now()->format('Ymd_His') . '.csv';
 
-        // ストリームレスポンスでCSVを返す
         $callback = function () use ($csvData) {
             $file = fopen('php://output', 'w');
             foreach ($csvData as $row) {
