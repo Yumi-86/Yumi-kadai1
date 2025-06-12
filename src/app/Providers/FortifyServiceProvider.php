@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -31,7 +32,9 @@ class FortifyServiceProvider extends ServiceProvider
                 }
             }
         );
+        $this->app->bind(CreatesNewUsers::class, CreateNewUser::class);
     }
+
 
     /**
      * Bootstrap any application services.

@@ -22,10 +22,10 @@
                             <input type="text" name="first_name" value="{{ old('first_name') }}" class="contact-form__name-input" placeholder="例: 太郎">
                         </div>
                         @error('last_name')
-                        <div class="contact-form__error">{{ $message}}</div>
+                        <div class="contact-form__error">{{$message}}</div>
                         @enderror
                         @error('first_name')
-                        <div class="contact-form__error">{{ $message}}</div>
+                        <div class="contact-form__error">{{$message}}</div>
                         @enderror
                     </div>
                 </div>
@@ -75,7 +75,16 @@
                             <span>-</span>
                             <input type="tel" name="tel3" value="{{ old('tel3') }}" class="contact-form__tel-input" maxlength="4" placeholder="5678">
                         </div>
-                        @error('tel')
+                        @error('tel1')
+                        <div class="contact-form__error">{{ $message }}</div>
+                        @enderror
+                        @error('tel2')
+                        <div class="contact-form__error">{{ $message }}</div>
+                        @enderror
+                        @error('tel3')
+                        <div class="contact-form__error">{{ $message }}</div>
+                        @enderror
+                        @error('full_tel')
                         <div class="contact-form__error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -138,7 +147,7 @@
                     <div class="contact-form__label">
                         <span class="contact-form__label-item">どこで知りましたか？<span class="contact-form__label-item--red">※</span><span class="contact-form__label-item--avalability">複数選択可</span>
                     </div>
-                    <div class=" contact-form__content">
+                    <div class="contact-form__content">
                         <div class="contact-form__channel">
                             @foreach( $channels as $channel)
                             <label class="contact-form__channel-check">

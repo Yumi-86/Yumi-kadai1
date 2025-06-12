@@ -18,9 +18,13 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', [ContactController::class, 'create']);
-Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/thanks', [ContactController::class, 'store']);
+Route::get('/', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::get('/confirm', function () {
+    return redirect()->route('contact.create');
+});
+Route::post('/', [ContactController::class, 'edit'])->name('contact.edit');
+Route::post('/thanks', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -28,12 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 });
 
-Route::post('/admin', [AdminController::class, 'search']);
-Route::delete('/admin', [AdminController::class, 'destroy']);
-Route::get('/admin/export', [AdminController::class, 'export']);
+Route::post('/admin', [AdminController::class, 'search'])->name('admin.search');
+Route::delete('/admin', [AdminController::class, 'destroy'])->name('admin.destroy');
+Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('auth.login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('auth.store');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('auth.destory');
 
 // Route::post('/register', [CustomRegisterController::class, 'register']);

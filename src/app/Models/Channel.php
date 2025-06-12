@@ -12,7 +12,10 @@ class Channel extends Model
         'content'
     ];
 
-    public function contacts() {
+    protected $table = 'channels';
+
+    public function contacts()
+    {
         return $this->belongsToMany(Contact::class);
     }
 }

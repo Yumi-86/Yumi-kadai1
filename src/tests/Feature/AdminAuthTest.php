@@ -7,8 +7,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Profile;
-use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+
+
 
 class AdminAuthTest extends TestCase
 {
@@ -17,7 +20,9 @@ class AdminAuthTest extends TestCase
      *
      * @return void
      */
-    public function admin_login()
+    use RefreshDatabase;
+
+    public function test_admin_login()
     {
         $user = User::factory()->create([
             'email' => 'admin@example.com',
@@ -30,10 +35,10 @@ class AdminAuthTest extends TestCase
         ]);
 
         $response->assertRedirect('/admin');
-        $response->assertAuthenticatedAs($user);
+        $this->assertAuthenticatedAs($user);
     }
 
-    public function access_to_admin_after_login()
+    public function test_access_to_admin_after_login()
     {
         $user = User::factory()->create();
 
@@ -43,7 +48,7 @@ class AdminAuthTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function admin_logout()
+    public function test_admin_logout()
     {
         $user = User::factory()->create();
 
@@ -52,10 +57,10 @@ class AdminAuthTest extends TestCase
         $response = $this->post('/logout');
 
         $response->assertRedirect('/login');
-        $response->assertGuest();
+        $this->assertGuest();
     }
 
-    public function register_profile()
+    public function test_register_profile()
     {
         Storage::fake('public');
 
@@ -68,7 +73,7 @@ class AdminAuthTest extends TestCase
             'birthday' => '1999-01-01',
             'tel' => '08012345678',
             'address' => '神奈川県',
-            'image' => UploadedFile::fake()->image('avater.jpg'),
+            'image' => UploadedFile::fake()->create('avatar.jpg', 100, 'image/jpeg'),
         ]);
 
         $response->assertRedirect('/admin');

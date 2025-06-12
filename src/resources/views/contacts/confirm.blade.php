@@ -11,6 +11,7 @@
                 <h2 class="confirm__heading-text">Confirm</h2>
             </div>
             <form action="/thanks" method="post" class="confirm-form">
+                @csrf
                 <div class="form-table">
                     <table class="form-table__inner">
                         <tr class="form-table__row">
@@ -24,20 +25,20 @@
                         <tr class="form-table__row">
                             <th class="form-table__header">性別</th>
                             <td class="form-table__content">
-                                <input type="text" value="{{ $contact->gender_label }}" name="gender_label" readonly>
-                                <input type="hidden" value="{{ $contact->gender }}">
+                                <input type="text" value="{{ $contact->gender_label }}" name="gender_label" disabled>
+                                <input type="hidden" name="gender" value="{{ $contact->gender }}">
                             </td>
                         </tr>
                         <tr class="form-table__row">
                             <th class="form-table__header">メールアドレス</th>
                             <td class="form-table__content">
-                                <input type="email" value="{{ $contact->email }}" readonly>
+                                <input type="email" name="email" value="{{ $contact->email }}" readonly>
                             </td>
                         </tr>
                         <tr class="form-table__row">
                             <th class="form-table__header">電話番号</th>
                             <td class="form-table__content">
-                                <input type="tel" value="{{ $contact->full_tel }}" readonly>
+                                <input type="tel" name="full_tel" value="{{ $contact->full_tel }}" readonly>
                                 <input type="hidden" name="tel1" value="{{ $contact->tel1 }}">
                                 <input type="hidden" name="tel2" value="{{ $contact->tel2 }}">
                                 <input type="hidden" name="tel3" value="{{ $contact->tel3 }}">
@@ -71,9 +72,9 @@
                         <tr class="form-table__row">
                             <th class="form-table__header">どこで知りましたか？</th>
                             <td class="form-table__content">
-                                <input type="text" value="{{ implode(' 、 ' , $contact->channel_label) }}" disabled>
-                                @foreach( $contact->channel_id as $channelId)
-                                <input type="hidden" name="channel_id[]" value="{{ $channelId }}">
+                                <input type="text" value="{{ implode(' 、 ' , $channel_labels) }}" disabled>
+                                @foreach( $channel_ids as $id)
+                                <input type="hidden" name="channel_id[]" value="{{ $id }}">
                                 @endforeach
                             </td>
                         </tr>
@@ -88,12 +89,24 @@
                         @endif
                     </table>
                 </div>
-                <div class="confirm__button-wrapper">
+                <div class="confirm__button-wrapper button-pair">
                     <button class="confirm__button--submit" type="submit">送信</button>
-                    <button class="edit__button--submit" type="submit" name="action" value="back">修正</button>
                 </div>
             </form>
-
+            <form action="/" method="post" class="edit-form" novalidate>
+                @csrf
+                <div class="edit__button-wrapper button-pair">
+                    @foreach( $contact->toArray() as $key => $value)
+                    @if (!is_array($value))
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                    @endif
+                    @endforeach
+                    @foreach( $channel_ids as $id)
+                    <input type="hidden" name="channel_id[]" value="{{ $id }}">
+                    @endforeach
+                    <button class="edit__button--submit" type="submit">修正</button>
+                </div>
+            </form>
         </div>
     </div>
 </main>

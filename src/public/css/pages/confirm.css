@@ -7,6 +7,7 @@
     width: 70%;
     margin: 0 auto;
     font-family: 'Inika', serif;
+    position: relative;
 }
 
 .confirm__heading {
@@ -47,28 +48,34 @@
     border: none;
     width: 100%;
 }
-.confirm__button-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
+.button-pair {
+    display: inline-block;
     margin-top: 30px;
+    vertical-align: top;
+}
+
+.confirm__button-wrapper,
+.edit__button-wrapper {
+    text-align: center;
+    margin-right: 30px;
 }
 
 .confirm__button--submit,
 .edit__button--submit {
     padding: 10px 20px;
     font-size: 16px;
-}
-.confirm__button--submit {
     width: 120px;
+    border: none;
+    cursor: pointer;
+}
+
+.confirm__button--submit {
     background-color: #82756A;
     color: #fff;
-    border: none;
-    cursor: pointer;
 }
+
 .edit__button--submit {
     color: #82756A;
-    width: 120px;
-    border: none;
-    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #82756A;
 }

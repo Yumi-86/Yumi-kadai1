@@ -20,7 +20,10 @@ class ContactFormTest extends TestCase
      *
      * @return void
      */
-    public function 問い合わせフォーム画面が表示される()
+
+    use RefreshDatabase;
+
+    public function test_contact_form_screen_is_displayed()
     {
         $response = $this->get('/');
 
@@ -38,7 +41,7 @@ class ContactFormTest extends TestCase
 
         $response->assertViewHas('categories', Category::all());
     }
-    public function 問い合わせを送信すると確認画面が表示される()
+    public function test_submitting_inquiry_displays_confirmation_screen()
     {
         Storage::fake('public');
 
@@ -65,6 +68,7 @@ class ContactFormTest extends TestCase
 
         $response = $this->post('/confirm', $formData);
 
+
         $response->assertStatus(200);
 
         $response->assertSee('深浦　優美');
@@ -73,21 +77,22 @@ class ContactFormTest extends TestCase
         $response->assertSee('08012345678');
         $response->assertSee('東京都千代田区1-1');
         $response->assertSee('カナンビル1F');
-        $response->assertSee( $category->content);
+        $response->assertSee($category->content);
         $response->assertSee('test');
         $response->assertSee($channel->content);
+
 
         Storage::disk('public')->assertExists('temp/' . $image->hashName());
     }
 
-    public function 入力データを送信しバリデーションエラーが表示される()
+    public function test_input_validation_errors_are_displayed()
     {
         $response = $this->from('/')->post('/confirm', [
             'last_name' => '',
             'first_name' => '',
             'gender' => '',
             'email' => 'invalid-email',
-            'tel1' => '180',
+            'tel1' => '',
             'tel2' => '',
             'tel3' => '',
             'address' => '',
@@ -105,7 +110,9 @@ class ContactFormTest extends TestCase
             'first_name',
             'gender',
             'email',
-            'tel',
+            'tel2',
+            'tel3',
+            'full_tel',
             'address',
             'building',
             'category_id',
@@ -113,7 +120,7 @@ class ContactFormTest extends TestCase
             'channel_id',
         ]);
     }
-    public function 問い合わせフォームを送信するとデータが保存されてthanksページにリダイレクトされる()
+    public function test_contact_form_data_is_saved_and_redirects_to_thanks_page()
     {
         $category = Category::factory()->create();
         $channel = Channel::factory()->create();
@@ -126,7 +133,10 @@ class ContactFormTest extends TestCase
             'first_name' => '優美',
             'gender' => '2',
             'email' => 'yuumi@example.com',
-            'full_tel' => '08012345678',
+            'tel1' => '080',
+            'tel2' => '1234',
+            'tel3' => '5678',
+            // 'full_tel' => '08012345678',
             'address' => '東京都千代田区1-1',
             'building' => 'カナンビル1F',
             'category_id' => $category->id,
@@ -164,4 +174,3 @@ class ContactFormTest extends TestCase
         Storage::disk('public')->assertExists('contacts/' . basename($formData['image_path']));
     }
 }
-
